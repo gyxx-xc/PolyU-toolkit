@@ -4,8 +4,6 @@
 // @grant    GM.addStyle
 // @match    https://learn.polyu.edu.hk/ultra/*
 // ==/UserScript==
-
-
 var href = window.location.href;
 
 var a = '#active-term-name::after::after{content: "asdasdasd";}';
@@ -22,7 +20,7 @@ document.getElementsByTagName("body")[0].onload = function(){
 
 function isReady(myEvent){
 	try{
-    document.getElementsByClassName("select-wrapper")[0].getElementsByTagName("button")[0];
+    document.getElementsByClassName("semester")[0].getElementsByClassName("select-wrapper")[0].getElementsByTagName("button")[0];
     window.dispatchEvent(myEvent);
   }catch(e){
 		return;
@@ -32,9 +30,8 @@ function isReady(myEvent){
 function getList(){
   var output = new Array(0);
   for(var i = 0;; i ++){
-    if(document.getElementsByClassName("js-filter-id-"+i.toString())[0] === undefined) break;
-    output.unshift( document.getElementsByClassName("js-filter-id-"+i.toString() )[0].getElementsByTagName("span")[0] );
-    
+    if(document.getElementsByClassName("semester")[0].getElementsByClassName("js-filter-id-"+i.toString())[0] === undefined) break;
+    output.unshift( document.getElementsByClassName("semester")[0].getElementsByClassName("js-filter-id-"+i.toString() )[0].getElementsByTagName("span")[0] );
   }
   return output;
 }
@@ -45,7 +42,7 @@ function selectUpd(){
 }
 
 function change(){
-  document.getElementsByClassName("select-wrapper")[0].getElementsByTagName("button")[0].click();
+  document.getElementsByClassName("semester")[0].getElementsByClassName("select-wrapper")[0].getElementsByTagName("button")[0].click();
   var lis = getList();
   if(document.getElementById("Term") == null) S(lis);
   lis[ document.getElementById("Term").selectedIndex ].click();
